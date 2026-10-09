@@ -535,3 +535,237 @@ button { font: inherit; }
   }
   .reveal { opacity: 1; transform: none; }
 }
+
+/* Interactive Project Card Effects */
+.projects-grid .project-card {
+  position: relative;
+  transform: translateY(0) scale(1);
+  transform-style: preserve-3d;
+  transition:
+    transform 0.35s ease,
+    box-shadow 0.35s ease,
+    border-color 0.35s ease;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover: lift and glow */
+@media (hover: hover) and (pointer: fine) {
+  .projects-grid .project-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow:
+      0 18px 40px rgba(80, 120, 255, 0.18),
+      0 0 0 1px rgba(130, 150, 255, 0.25);
+    border-color: rgba(130, 150, 255, 0.55);
+  }
+}
+
+/* Click: press and bounce back */
+.projects-grid .project-card:active {
+  transform: translateY(-2px) scale(0.97);
+  transition-duration: 0.12s;
+}
+
+/* Keyboard accessibility */
+.projects-grid .project-card:focus-within {
+  outline: 2px solid rgba(130, 150, 255, 0.7);
+  outline-offset: 4px;
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .projects-grid .project-card {
+    transition: none;
+  }
+}
+/* =================================
+   PREMIUM PORTFOLIO INTERACTIONS
+   ================================= */
+
+/* Smooth navigation between sections */
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 90px;
+}
+
+/* Subtle entrance animation for main sections */
+@keyframes sectionReveal {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.section {
+  animation: sectionReveal 0.7s ease both;
+}
+
+/* Interactive skill and tool cards */
+.skills-section .skill-card,
+.skills-section .tool-card,
+.skills-section .skill-item,
+.skills-section .tool-item,
+.skills-section .skill-category,
+.skills-section .tech-card {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Lift effect for existing skill/tool items */
+@media (hover: hover) and (pointer: fine) {
+  .skills-section .skill-card:hover,
+  .skills-section .tool-card:hover,
+  .skills-section .skill-item:hover,
+  .skills-section .tool-item:hover,
+  .skills-section .skill-category:hover,
+  .skills-section .tech-card:hover {
+    transform: translateY(-5px) scale(1.025);
+    box-shadow: 0 10px 26px rgba(80, 120, 255, 0.14);
+  }
+}
+
+/* Home and section-heading accent */
+.section-heading h2,
+.hero h1 {
+  transition: text-shadow 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .section-heading h2:hover,
+  .hero h1:hover {
+    text-shadow: 0 0 22px rgba(120, 145, 255, 0.25);
+  }
+}
+
+/* About section interactive panels */
+.about-section .about-card,
+.about-section .about-content,
+.about-section .about-item {
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .about-section .about-card:hover,
+  .about-section .about-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(80, 120, 255, 0.12);
+  }
+}
+
+/* Click feedback for interactive cards */
+.skills-section .skill-card:active,
+.skills-section .tool-card:active,
+.skills-section .skill-item:active,
+.skills-section .tool-item:active,
+.skills-section .skill-category:active,
+.skills-section .tech-card:active,
+.projects-grid .project-card:active {
+  transform: scale(0.97);
+  transition-duration: 0.12s;
+}
+
+/* Keep animations comfortable for all users */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .section,
+  .section-heading h2,
+  .hero h1,
+  .skills-section *,
+  .about-section * {
+    animation: none;
+    transition: none;
+  }
+}
+/* ===== FIXED PORTFOLIO CARD INTERACTIONS ===== */
+
+/* Skills cards: HTML uses #skills, not .skills-section */
+#skills .skill-card {
+  position: relative;
+  cursor: pointer;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease,
+    background 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  #skills .skill-card:hover {
+    transform: translateY(-7px) scale(1.02);
+    border-color: rgba(112, 165, 255, 0.5);
+    box-shadow: 0 12px 30px rgba(80, 120, 255, 0.18);
+  }
+
+  #home .hero h1:hover {
+    text-shadow: 0 0 22px rgba(120, 145, 255, 0.25);
+  }
+
+  #about .about-note:hover {
+    transform: translateY(-4px);
+    border-color: rgba(178, 154, 255, 0.45);
+  }
+}
+
+#about .about-note {
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease;
+}
+
+/* Project cards: preserve existing hover effects */
+.projects-grid .project-card {
+  cursor: default;
+  transition:
+    transform 0.3s ease,
+    border-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .projects-grid .project-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    border-color: rgba(133, 162, 255, 0.5);
+    box-shadow: 0 18px 45px rgba(80, 120, 255, 0.16);
+  }
+}
+
+/* Press feedback on touch/click */
+#skills .skill-card:active,
+.projects-grid .project-card:active {
+  transform: scale(0.98);
+  transition-duration: 0.12s;
+}
+
+/* Smooth effects for section headings */
+.section-heading h2 {
+  transition: text-shadow 0.3s ease;
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .section-heading h2:hover {
+    text-shadow: 0 0 20px rgba(112, 165, 255, 0.18);
+  }
+}
+
+/* Respect reduced-motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  #skills .skill-card,
+  #about .about-note,
+  .projects-grid .project-card,
+  .section-heading h2,
+  #home .hero h1 {
+    animation: none;
+    transition: none;
+  }
+}
